@@ -2,26 +2,27 @@
 
 /**
  * _queue - sets format of data to queue(FIFI/LILO)
- * @dbly: head of linked list
- * @lnum: line number
+ * @holl: head of linked list
+ * @linm: line number
  */
-void _queue(stack_t **dbly, unsigned int lnum)
+void _queue(stack_t **holl, unsigned int linm)
 {
-	(void)dbly;
-	(void)lnum;
+	(void)holl;
+	(void)linm;
 
 	vglo.lifo = 0;
 }
 
 /**
  * _stack - sets format of data to stack (LIFO/FILO)
- * @dbly: linked list head
- * @lnum: line number
+ * @holl: linked list head
+ * @linm: line number
  */
-void _stack(stack_t **dbly, unsigned int lnum)
+void _stack(stack_t **holl, unsigned int linm)
 {
-	(void)dbly;
-	(void)lnum;
+	(void)holl;
+	(void)linm;
 
 	vglo.lifo = 1;
 }
+

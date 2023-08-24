@@ -2,59 +2,60 @@
 
 /**
  * _rotl - rotates 1st element to the bottom and 2nd to the top
- * @dbly: linked list head
- * @lnum: line nummber
+ * @llhd: linked list head
+ * @linm: line nummber
  */
-void _rotl(stack_t **dbly, unsigned int lnum)
+void _rotl(stack_t **llhd, unsigned int linm)
 {
-	stack_t *auxa = NULL;
-	stack_t *auxb = NULL;
-	(void)lnum;
+	stack_t *adc = NULL;
+	stack_t *abx = NULL;
+	(void)linm;
 
-	if (*dbly == NULL)
+	if (*llhd == NULL)
 		return;
 
-	if ((*dbly)->next == NULL)
+	if ((*llhd)->next == NULL)
 		return;
 
-	auxa = (*dbly)->next;
-	auxb = *dbly;
+	adc = (*llhd)->next;
+	abx = *llhd;
 
-	for (; auxb->next != NULL; auxb = auxb->next)
+	for (; abx->next != NULL; abx = abx->next)
 		;
 
-	auxa->prev = NULL;
-	auxb->next = *dbly;
-	(*dbly)->next = NULL;
-	(*dbly)->prev = auxb;
-	*dbly = auxa;
+	adc->prev = NULL;
+	abx->next = *llhd;
+	(*llhd)->next = NULL;
+	(*llhd)->prev = abx;
+	*llhd = adc;
 }
 
 /**
  * _rotr - reverse stack
- * @dbly: linked list head
- * @lnum: line number
+ * @llhd: linked list head
+ * @linm: line number
  */
-void _rotr(stack_t **dbly, unsigned int lnum)
+void _rotr(stack_t **llhd, unsigned int linm)
 {
-	stack_t *ux = NULL;
-	(void)lnum;
+	stack_t *fx = NULL;
+	(void)linm;
 
-	if (*dbly == NULL)
+	if (*llhd == NULL)
 		return;
 
-	if ((*dbly)->next == NULL)
+	if ((*llhd)->next == NULL)
 		return;
 
-	ux = *dbly;
+	fx = *llhd;
 
-	for (; ux->next != NULL; ux = ux->next)
+	for (; fx->next != NULL; fx = fx->next)
 		;
 
-	ux->prev->next = NULL;
-	ux->next = *dbly;
-	ux->prev = NULL;
-	(*dbly)->prev = ux;
-	*dbly = ux;
+	fx->prev->next = NULL;
+	fx->next = *llhd;
+	fx->prev = NULL;
+	(*llhd)->prev = fx;
+	*llhd = fx;
 }
+
 

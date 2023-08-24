@@ -2,59 +2,59 @@
 /**
  * _push - pushes an element to the stack
  *
- * @dbly: head of the linked list
- * @lnum: line number
+ * @hdll: head of the linked list
+ * @linm: line number
  * Return: no return
  */
-void _push(stack_t **dbly, unsigned int lnum)
+void _push(stack_t **hdll, unsigned int linm)
 {
-	int w, j;
+	int q, m;
 
 	if (!vglo.arg)
 	{
-		dprintf(2, "L%u: ", lnum);
+		dprintf(2, "L%u: ", linm);
 		dprintf(2, "usage: push integer\n");
 		free_vglo();
 		exit(EXIT_FAILURE);
 	}
 
-	for (j = 0; vglo.arg[j] != '\0'; j++)
+	for (m = 0; vglo.arg[m] != '\0'; m++)
 	{
-		if (!isdigit(vglo.arg[j]) && vglo.arg[j] != '-')
+		if (!isdigit(vglo.arg[m]) && vglo.arg[m] != '-')
 		{
-			dprintf(2, "L%u: ", lnum);
+			dprintf(2, "L%u: ", linm);
 			dprintf(2, "usage: push integer\n");
 			free_vglo();
 			exit(EXIT_FAILURE);
 		}
 	}
 
-	w = atoi(vglo.arg);
+	q = atoi(vglo.arg);
 
 	if (vglo.lifo == 1)
-		add_dnodeint(dbly, w);
+		add_dnodeint(hdll, q);
 	else
-		add_dnodeint_end(dbly, w);
+		add_dnodeint_end(hdll, q);
 }
 
 /**
  * _pall - prints all values on the stack
  *
- * @dbly: head of the linked list
- * @lnum: line numbers
+ * @hdll: head of the linked list
+ * @linm: line numbers
  * Return: no return
  */
-void _pall(stack_t **dbly, unsigned int lnum)
+void _pall(stack_t **hdll, unsigned int linm)
 {
-	stack_t *ux;
-	(void)lnum;
+	stack_t *fx;
+	(void)linm;
 
-	ux = *dbly;
+	fx = *hdll;
 
-	while (ux)
+	while (fx)
 	{
-		printf("%d\n", ux->n);
-		ux = ux->next;
+		printf("%d\n", fx->n);
+		fx = fx->next;
 	}
 }
 
@@ -62,76 +62,77 @@ void _pall(stack_t **dbly, unsigned int lnum)
 /**
  * _pint - prints the value at the top of the stack
  *
- * @dbly: head of the linked list
- * @lnum: line number
+ * @hdll: head of the linked list
+ * @linm: line number
  * Return: no return
  */
-void _pint(stack_t **dbly, unsigned int lnum)
+void _pint(stack_t **hdll, unsigned int linm)
 {
-	(void)lnum;
+	(void)linm;
 
-	if (*dbly == NULL)
+	if (*hdll == NULL)
 	{
-		dprintf(2, "L%u: ", lnum);
+		dprintf(2, "L%u: ", linm);
 		dprintf(2, "can't pint, stack empty\n");
 		free_vglo();
 		exit(EXIT_FAILURE);
 	}
 
-	printf("%d\n", (*dbly)->n);
+	printf("%d\n", (*hdll)->n);
 }
 
 /**
  * _pop - removes the top element of the stack
  *
- * @dbly: head of the linked list
- * @lnum: line number
+ * @hdll: head of the linked list
+ * @linm: line number
  * Return: no return
  */
-void _pop(stack_t **dbly, unsigned int lnum)
+void _pop(stack_t **hdll, unsigned int linm)
 {
-	stack_t *ux;
+	stack_t *fx;
 
-	if (dbly == NULL || *dbly == NULL)
+	if (hdll == NULL || *hdll == NULL)
 	{
-		dprintf(2, "L%u: can't pop an empty stack\n", lnum);
+		dprintf(2, "L%u: can't pop an empty stack\n", linm);
 		free_vglo();
 		exit(EXIT_FAILURE);
 	}
-	ux = *dbly;
-	*dbly = (*dbly)->next;
-	free(ux);
+	fx = *hdll;
+	*hdll = (*hdll)->next;
+	free(fx);
 }
 
 
 /**
  * _swap - swaps the top two elements of the stack
  *
- * @dbly: head of the linked list
- * @lnum: line number
+ * @hdll: head of the linked list
+ * @linm: line number
  * Return: no return
  */
-void _swap(stack_t **dbly, unsigned int lnum)
+void _swap(stack_t **hdll, unsigned int linm)
 {
 	int b = 0;
-	stack_t *ux = NULL;
+	stack_t *fx = NULL;
 
-	ux = *dbly;
+	fx = *hdll;
 
-	for (; ux != NULL; ux = ux->next, b++)
+	for (; fx != NULL; fx = fx->next, b++)
 		;
 
 	if (b < 2)
 	{
-		dprintf(2, "L%u: can't swap, stack too short\n", lnum);
+		dprintf(2, "L%u: can't swap, stack too short\n", linm);
 		free_vglo();
 		exit(EXIT_FAILURE);
 	}
 
-	ux = *dbly;
-	*dbly = (*dbly)->next;
-	ux->next = (*dbly)->next;
-	ux->prev = *dbly;
-	(*dbly)->next = ux;
-	(*dbly)->prev = NULL;
+	fx = *hdll;
+	*hdll = (*hdll)->next;
+	fx->next = (*hdll)->next;
+	fx->prev = *hdll;
+	(*hdll)->next = fx;
+	(*hdll)->prev = NULL;
 }
+

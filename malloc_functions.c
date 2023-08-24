@@ -1,43 +1,43 @@
 #include "monty.h"
 /**
  * _strcmp - Function that compares two strings.
- * @s_one: type str compared
- * @s_two: type str compared
- * Return: 0 if s_one and s_two are equals.
+ * @str_o: type str compared
+ * @str_t: type str compared
+ * Return: 0 if str_o and str_t are equals.
  *         another value if they are different
  */
-int _strcmp(char *s_one, char *s_two)
+int _strcmp(char *str_o, char *str_t)
 {
-	int i;
+	int x;
 
-	for (i = 0; s_one[i] == s_two[i] && s_one[i]; i++)
+	for (x = 0; str_o[x] == str_t[x] && str_o[x]; x++)
 		;
-	if (s_one[i] > s_two[i])
+	if (str_o[x] > str_t[x])
 		return (1);
-	if (s_one[i] < s_two[i])
+	if (str_o[x] < str_t[x])
 		return (-1);
 	return (0);
 }
 
 /**
  * _sch - search if a char is inside a string
- * @sr: string to review
- * @cf: char to find
+ * @str_a: string to review
+ * @str_f: char to find
  * Return: 1 if success 0 if not
  */
-int _sch(char *sr, char cf)
+int _sch(char *str_a, char str_f)
 {
-	int cont = 0;
+	int acount = 0;
 
-	while (sr[cont] != '\0')
+	while (str_a[acount] != '\0')
 	{
-		if (sr[cont] == cf)
+		if (str_a[acount] == str_f)
 		{
 			break;
 		}
-		cont++;
+		acount++;
 	}
-	if (sr[cont] == cf)
+	if (str_a[acount] == str_f)
 		return (1);
 	else
 		return (0);
@@ -45,41 +45,42 @@ int _sch(char *sr, char cf)
 
 /**
  * _strtoky - function that cut a string into tokens depending of the delimit
- * @sr: string to cut in parts
- * @deli: delimiters
+ * @str_a: string to cut in parts
+ * @dml: delimiters
  * Return: first partition
  */
-char *_strtoky(char *sr, char *deli)
+char *_strtoky(char *str_a, char *dml)
 {
-	static char *ultimo;
-	int i = 0, j = 0;
+	static char *ultm;
+	int x = 0, j = 0;
 
-	if (!sr)
-		sr = ultimo;
-	while (sr[i] != '\0')
+	if (!str_a)
+		str_a = ultm;
+	while (str_a[x] != '\0')
 	{
-		if (_sch(deli, sr[i]) == 0 && sr[i + 1] == '\0')
+		if (_sch(dml, str_a[x]) == 0 && str_a[x + 1] == '\0')
 		{
-			ultimo = sr + i + 1;
-			*ultimo = '\0';
-			sr = sr + j;
-			return (sr);
+			ultm = str_a + x + 1;
+			*ultm = '\0';
+			str_a = str_a + j;
+			return (str_a);
 		}
-		else if (_sch(deli, sr[i]) == 0 && _sch(deli, sr[i + 1]) == 0)
-			i++;
-		else if (_sch(deli, sr[i]) == 0 && _sch(deli, sr[i + 1]) == 1)
+		else if (_sch(dml, str_a[x]) == 0 && _sch(dml, str_a[x + 1]) == 0)
+			x++;
+		else if (_sch(dml, str_a[x]) == 0 && _sch(dml, str_a[x + 1]) == 1)
 		{
-			ultimo = sr + i + 1;
-			*ultimo = '\0';
-			ultimo++;
-			sr = sr + j;
-			return (sr);
+			ultm = str_a + x + 1;
+			*ultm = '\0';
+			ultm++;
+			str_a = str_a + j;
+			return (str_a);
 		}
-		else if (_sch(deli, sr[i]) == 1)
+		else if (_sch(dml, str_a[x]) == 1)
 		{
 			j++;
-			i++;
+			x++;
 		}
 	}
 	return (NULL);
 }
+

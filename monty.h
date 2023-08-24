@@ -76,32 +76,32 @@ extern bus_t bus;
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **a_stack, unsigned int l_nums);
+	void (*f)(stack_t **astk, unsigned int lnm);
 } instruction_t;
 
 extern global_t vglo;
 
 /* opcode_instructuions*/
-void _push(stack_t **a_stack, unsigned int l_nums);
-void _pall(stack_t **a_stack, unsigned int l_nums);
-void _pint(stack_t **a_stack, unsigned int l_nums);
-void _pop(stack_t **a_stack, unsigned int l_nums);
-void _swap(stack_t **a_stack, unsigned int l_nums);
-void _queue(stack_t **a_stack, unsigned int l_nums);
-void _stack(stack_t **a_stack, unsigned int l_nums);
-void _add(stack_t **a_stack, unsigned int l_nums);
-void _nop(stack_t **a_stack, unsigned int l_nums);
-void _sub(stack_t **a_stack, unsigned int l_nums);
-void _div(stack_t **a_stack, unsigned int l_nums);
-void _mul(stack_t **a_stack, unsigned int l_nums);
-void _mod(stack_t **a_stack, unsigned int l_nums);
-void _pchar(stack_t **a_stack, unsigned int l_nums);
-void _pstr(stack_t **a_stack, unsigned int l_nums);
-void _rotl(stack_t **a_stack, unsigned int l_nums);
-void _rotr(stack_t **a_stack, unsigned int l_nums);
+void _pint(stack_t **astk, unsigned int lnm);
+void _pop(stack_t **astk, unsigned int lnm);
+void _swap(stack_t **astk, unsigned int lnm);
+void _queue(stack_t **astk, unsigned int lnm);
+void _mul(stack_t **astk, unsigned int lnm);
+void _mod(stack_t **astk, unsigned int lnm);
+void _pchar(stack_t **astk, unsigned int lnm);
+void _pstr(stack_t **astk, unsigned int lnm);
+void _rotl(stack_t **astk, unsigned int lnm);
+void _rotr(stack_t **astk, unsigned int lnm);
+void _stack(stack_t **astk, unsigned int lnm);
+void _add(stack_t **astk, unsigned int lnm);
+void _nop(stack_t **astk, unsigned int lnm);
+void _sub(stack_t **astk, unsigned int lnm);
+void _div(stack_t **astk, unsigned int lnm);
+void _push(stack_t **astk, unsigned int lnm);
+void _pall(stack_t **astk, unsigned int lnm);
 
 /*get function*/
-void (*get_opcodes(char *opc))(stack_t **a_stack, unsigned int l_nums);
+void (*get_opcodes(char *opc))(stack_t **astk, unsigned int lnm);
 
 /*imported functions*/
 int _sch(char *s, char c);
@@ -119,3 +119,4 @@ void free_dlistint(stack_t *head);
 void free_vglo(void);
 
 #endif /* __MONTY_H__ */
+

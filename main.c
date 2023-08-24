@@ -16,16 +16,16 @@ void free_vglo(void)
 /**
  * start_vglo - initializes the global variables
  *
- * @file_d: file descriptor
+ * @def_f: file descriptor
  * Return: no return
  */
-void start_vglo(FILE *file_d)
+void start_vglo(FILE *def_f)
 {
 	vglo.lifo = 1;
 	vglo.cont = 1;
 	vglo.arg = NULL;
 	vglo.head = NULL;
-	vglo.fd = file_d;
+	vglo.fd = def_f;
 	vglo.buffer = NULL;
 }
 
@@ -33,49 +33,49 @@ void start_vglo(FILE *file_d)
  * check_input - checks if the file exists and if the file can
  * be opened
  *
- * @ac: argument count
- * @av: argument vector
+ * @a_ac: argument count
+ * @a_av: argument vector
  * Return: file struct
  */
-FILE *check_input(int ac, char *av[])
+FILE *check_input(int a_ac, char *a_av[])
 {
-	FILE *file_d;
+	FILE *def_f;
 
-	if (ac == 1 || ac > 2)
+	if (a_ac == 1 || a_ac > 2)
 	{
 		dprintf(2, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
-	file_d = fopen(av[1], "r");
+	def_f = fopen(a_av[1], "r");
 
-	if (file_d == NULL)
+	if (def_f == NULL)
 	{
-		dprintf(2, "Error: Can't open file %s\n", av[1]);
+		dprintf(2, "Error: Can't open file %s\n", a_av[1]);
 		exit(EXIT_FAILURE);
 	}
 
-	return (file_d);
+	return (def_f);
 }
 
 /**
  * main - Entry point
  *
- * @ac: argument count
- * @av: argument vector
+ * @a_ac: argument count
+ * @a_av: argument vector
  * Return: 0 on success
  */
-int main(int ac, char *av[])
+int main(int a_ac, char *a_av[])
 {
-	FILE *file_d;
-	size_t size = 256;
-	ssize_t nlines = 0;
+	FILE *def_f;
+	size_t asz = 256;
+	ssize_t num_l = 0;
 	char *lines[2] = {NULL, NULL};
 
-	file_d = check_input(ac, av);
-	start_vglo(file_d);
-	nlines = getline(&vglo.buffer, &size, file_d);
-	while (nlines != -1)
+	def_f = check_input(a_ac, a_av);
+	start_vglo(def_f);
+	num_l = getline(&vglo.buffer, &asz, def_f);
+	while (num_l != -1)
 	{
 		lines[0] = _strtoky(vglo.buffer, " \t\n");
 		if (lines[0] && lines[0][0] != '#')
@@ -91,7 +91,7 @@ int main(int ac, char *av[])
 			vglo.arg = _strtoky(NULL, " \t\n");
 			f(&vglo.head, vglo.cont);
 		}
-		nlines = getline(&vglo.buffer, &size, file_d);
+		num_l = getline(&vglo.buffer, &asz, def_f);
 		vglo.cont++;
 	}
 
@@ -99,4 +99,5 @@ int main(int ac, char *av[])
 
 	return (0);
 }
+
 

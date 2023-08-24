@@ -3,13 +3,13 @@
 /**
  * get_opcodes - selects the correct opcode to perform
  *
- * @a_opcode: opcode passed
+ * @opc_a: opcode passed
  *
  * Return: pointer to the function that executes the opcode
  */
-void (*get_opcodes(char *a_opcode))(stack_t **stack, unsigned int l_nums)
+void (*get_opcodes(char *opc_a))(stack_t **stack, unsigned int l_nums)
 {
-	instruction_t instruct[] = {
+	instruction_t a_instruct[] = {
 		{"push", _push},
 		{"pall", _pall},
 		{"pint", _pint},
@@ -29,13 +29,14 @@ void (*get_opcodes(char *a_opcode))(stack_t **stack, unsigned int l_nums)
 		{"queue", _queue},
 		{NULL, NULL}
 	};
-	int k;
+	int p;
 
-	for (k = 0; instruct[k].opcode; k++)
+	for (p = 0; a_instruct[p].opcode; p++)
 	{
-		if (_strcmp(instruct[k].opcode, a_opcode) == 0)
+		if (_strcmp(a_instruct[p].opcode, opc_a) == 0)
 			break;
 	}
 
-	return (instruct[k].f);
+	return (a_instruct[p].f);
 }
+
